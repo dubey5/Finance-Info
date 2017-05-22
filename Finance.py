@@ -1,6 +1,5 @@
 import requests
 from bs4 import*
-#https://www.google.com/finance?q=
 price=[]
 while(1):
     print("1-Stock Prices")
@@ -24,7 +23,6 @@ while(1):
                 print("The change is: "+data2[0].string+data2[1].string)
         except:
             print("Stock does't exist or no internet connection")
-#https://www.google.com/finance/market_news?ei=p2JtV9i4KYOxuwTW-otg
     elif choice=='2':
         try:
             url="https://www.google.com/finance/market_news?ei=p2JtV9i4KYOxuwTW-otg"
