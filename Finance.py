@@ -1,10 +1,12 @@
 import requests
 from bs4 import*
+#https://www.google.com/finance?q=
+price=[]
 while(1):
     print("1-Stock Prices")
     print("2-Market News")
-    choice=int(input("Enter your choice: "))
-    if choice==1:
+    choice=input("Enter your choice: ")
+    if choice=='1':
         url="https://www.google.com/finance?q="
         stock=input("Enter the name of your stock: ")
         url=url+stock
@@ -13,6 +15,7 @@ while(1):
             soup=BeautifulSoup(data.text,"html.parser")
             data1=soup.find('span',{'class':"pr"})
             print("The value of stock "+stock+" is: "+data1.span.string)
+            price.append(data1.span.string)
             try:
                 data2 = soup.find_all('span', {'class': 'chg'})
                 print("The change is: " + data2[0].string + data2[1].string)
@@ -21,7 +24,8 @@ while(1):
                 print("The change is: "+data2[0].string+data2[1].string)
         except:
             print("Stock does't exist or no internet connection")
-    elif choice==2:
+#https://www.google.com/finance/market_news?ei=p2JtV9i4KYOxuwTW-otg
+    elif choice=='2':
         try:
             url="https://www.google.com/finance/market_news?ei=p2JtV9i4KYOxuwTW-otg"
             data=requests.get(url)
@@ -48,12 +52,15 @@ while(1):
             print("No news for today")
     else:
         print("Invalid choice")
-    print('\n')
+    print("\n")
     print("do u want to continue(y/n)")
     dep=input()
-    if(dep=='y'):
+    if dep=='y' or dep=='Y':
+        print("\n")
         continue
-    else:
+    elif dep=='n' or dep=='N':
         break
-
-
+    else:
+        print("Invalid Choice")
+        print("\n")
+ 
